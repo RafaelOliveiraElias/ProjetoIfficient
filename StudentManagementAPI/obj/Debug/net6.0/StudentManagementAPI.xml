@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>StudentManagementAPI</name>
+    </assembly>
+    <members>
+        <member name="M:StudentController.GetAll">
+            <summary>
+            Retorna todos os alunos.
+            </summary>
+            <returns>Lista de alunos.</returns>
+        </member>
+        <member name="M:StudentController.GetApproved">
+            <summary>
+            Retorna todos os alunos aprovados.
+            </summary>
+            <returns>Lista de alunos aprovados.</returns>
+        </member>
+        <member name="M:StudentController.GetDisapproved">
+            <summary>
+            Retorna todos os alunos reprovados.
+            </summary>
+            <returns>Lista de alunos reprovados.</returns>
+        </member>
+        <member name="M:StudentController.GetByRegistration(System.String)">
+            <summary>
+            Retorna os dados de um aluno específico baseado na matrícula.
+            </summary>
+            <param name="registration">Número da matrícula do aluno.</param>
+            <returns>Dados do aluno com a matrícula fornecida.</returns>
+        </member>
+        <member name="M:StudentController.GetBestStudentsBySubject">
+            <summary>
+            Retorna o melhor aluno por matéria (maior nota).
+            </summary>
+            <returns>Lista com a matéria, nome do melhor aluno e sua nota.</returns>
+        </member>
+        <member name="M:StudentController.GetSortedStudents(StudentManagementAPI.Services.enums.SortStrategyType)">
+            <summary>
+            Endpoint para retornar os alunos ordenados com base na estratégia escolhida.
+            O usuário pode escolher a estratégia de ordenação desejada.
+            </summary>
+            <param name="strategy">Escolha a estratégia de ordenação. As opções são "Bubble Sort (0)" ou "LINQ Sort (1)".</param>
+            <returns>Lista de alunos ordenados com base na estratégia escolhida.</returns>
+        </member>
+    </members>
+</doc>
