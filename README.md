@@ -1,70 +1,107 @@
-# Getting Started with Create React App
+# Student Management System
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este é um sistema para gerenciar informações de alunos, incluindo suas notas e status de aprovação. O projeto é dividido em dois principais componentes: o **backend** (API em ASP.NET Core) e o **frontend** (aplicação em ReactJS com uso do `webpack`).
 
-## Available Scripts
+## Arquitetura do Projeto
 
-In the project directory, you can run:
+O projeto segue a seguinte estrutura de pastas:
 
-### `npm start`
+### Backend (API)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Controllers**: Contém os controladores da API.
+- **Models**: Contém os modelos de dados, como `Student`.
+- **Services**: Contém a lógica de negócio, como serviços de manipulação dos alunos.
+- **Repositories**: Contém a implementação de repositórios para acessar os dados (neste caso, um repositório baseado em arquivo CSV).
+  
+### Frontend (ReactJS)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **src/components**: Contém os componentes React que gerenciam a interface do usuário, como `StudentList` e `StudentDetails`.
+- **src/services**: Contém funções para se comunicar com a API do backend.
 
-### `npm test`
+## Tecnologias Utilizadas
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Backend
+- **ASP.NET Core**: Framework para construir a API.
+- **C#**: Linguagem usada no backend.
+- **Swagger**: Para documentação da API.
 
-### `npm run build`
+### Frontend
+- **ReactJS**: Biblioteca para construção de interfaces de usuário.
+- **Reactstrap**: Biblioteca para componentes de UI com base no Bootstrap.
+- **Webpack**: Para empacotamento e configuração do build do frontend.
+- **Axios**: Para fazer requisições HTTP à API.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Pré-requisitos
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Antes de começar, você precisará ter as seguintes ferramentas instaladas:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- [.NET SDK](https://dotnet.microsoft.com/download) (para o backend)
+- [Node.js](https://nodejs.org/) (para o frontend)
+- [npm](https://www.npmjs.com/) (gerenciador de pacotes JavaScript)
+  
+## Configuração do Backend (API)
 
-### `npm run eject`
+1. Clone o repositório do backend.
+2. Navegue até a pasta do projeto `StudentManagementAPI`.
+3. Execute o seguinte comando para restaurar as dependências:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+    ```bash
+    dotnet restore
+    ```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+4. Após restaurar as dependências, rode o projeto:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+    ```bash
+    dotnet run
+    ```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+5. A API estará rodando em `https://localhost:7292`.
 
-## Learn More
+## Configuração do Frontend (ReactJS)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+1. Clone o repositório do frontend.
+2. Navegue até a pasta do projeto `StudentManagementFront`.
+3. Instale as dependências necessárias:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+    ```bash
+    npm install
+    ```
 
-### Code Splitting
+4. Para rodar o frontend, execute:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+    ```bash
+    npm start
+    ```
 
-### Analyzing the Bundle Size
+5. A aplicação React estará rodando em `http://localhost:3000`.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Como Testar
 
-### Making a Progressive Web App
+### Backend
+- Use o Swagger para testar os endpoints da API. O Swagger estará disponível em `https://localhost:7292/swagger` quando a API estiver rodando.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### Frontend
+1. No navegador, acesse `http://localhost:3000`.
+2. Você verá a lista de alunos.
+3. Selecione a estratégia de ordenação e visualize os detalhes de um aluno ao clicar no botão "Ver Detalhes".
+4. Navegue para a lista de melhores alunos por matéria, clicando no botão "Melhores Alunos por Matéria".
 
-### Advanced Configuration
+## Endpoints da API
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- **GET `/api/student/sorted?strategy={strategy}`**: Retorna a lista de alunos ordenada de acordo com a estratégia de ordenação. A estratégia pode ser `0` (Bubble Sort) ou `1` (LINQ Sort).
+- **GET `/api/student/{registration}`**: Retorna os detalhes de um aluno baseado na matrícula.
+- **GET `/api/student/best-by-subject`**: Retorna a lista dos melhores alunos por matéria.
 
-### Deployment
+## Considerações
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- O sistema foi desenvolvido com foco na simplicidade e clareza.
+- A interface foi construída utilizando ReactJS com o auxílio do `reactstrap` para garantir uma interface de usuário moderna e responsiva.
+- A comunicação entre frontend e backend é feita via API RESTful utilizando o Axios para requisições HTTP.
 
-### `npm run build` fails to minify
+## Contribuições
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Contribuições são bem-vindas! Caso queira contribuir com melhorias ou correções, sinta-se à vontade para abrir um pull request.
+
+## Licença
+
+Este projeto está licenciado sob a [MIT License](LICENSE).
